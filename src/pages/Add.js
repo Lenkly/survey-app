@@ -17,20 +17,24 @@ function Add() {
       answerTwo: answerTwo,
       answerThree: answerThree
     };
-    const response = await fetch("http://localhost:4000/polls", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(poll)
-    });
+    const response = await fetch(
+      process.env.REACT_APP_POLLS_API ||
+        "https://my-json-server.typicode.com/Lenkly/survey-app/polls",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(poll)
+      }
+    );
     const createdPoll = await response.json();
     alert(`Created poll with the id ${createdPoll.id}`);
   }
   return (
     <>
-      <Card>
-        <form className="add-form" onSubmit={handleSubmit}>
+      <form className="add-form" onSubmit={handleSubmit}>
+        <Card>
           <input
             className="add-form__input-question"
             type="text"
@@ -68,10 +72,10 @@ function Add() {
             }}
           />
           {/* Add <Link to="/vote">Vote!!</Link> */}
-        </form>
-      </Card>
+        </Card>
 
-      <Button>Create Poll</Button>
+        <Button>Create Poll</Button>
+      </form>
     </>
   );
 }
