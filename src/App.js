@@ -8,23 +8,25 @@ import Result from "./pages/Result";
 
 function App() {
   return (
-    <Router>
-      <Header />
+    <div>
+      <Router>
+        <Header />
 
-      <main className="main">
-        <Switch>
-          <Route path="/add">
-            <Add />
-          </Route>
-          <Route path="/vote">
-            <Vote />
-          </Route>
-          <Route path="/result">
-            <Result />
-          </Route>
-        </Switch>
-      </main>
-    </Router>
+        <main className="main">
+          <Switch>
+            <Route path="/add">
+              <Add />
+            </Route>
+            <Route path="/vote">
+              <Vote />
+            </Route>
+            <Route path="/result">
+              <Result />
+            </Route>
+          </Switch>
+        </main>
+      </Router>
+    </div>
   );
 }
 export default App;

@@ -1,0 +1,25 @@
+{
+  "polls": [
+    {
+      "id": 1,
+      "question": "What do you want to eat?",
+      "answerOne": "Pizza",
+      "answerTwo": "Ramen",
+      "answerThree": "Döner"
+    },
+    {
+      "id": 2,
+      "question": "Do you want to take a nap?",
+      "answerOne": "Yes",
+      "answerTwo": "No",
+      "answerThree": "Maybe"
+    },
+    {
+      "id": 3,
+      "question": "Is this a question?",
+      "answerOne": "LOL",
+      "answerTwo": "Why is this your question 🙄",
+      "answerThree": "No"
+    }
+  ]
+}
