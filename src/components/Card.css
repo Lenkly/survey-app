@@ -1,9 +1,7 @@
 .card {
-  background: #fff;
-  opacity: 0.3;
-  border-radius: 112px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
   padding: 20px;
   width: 100%;
   max-width: 600px;
-  color: #fff;
 }

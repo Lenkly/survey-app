@@ -5,7 +5,7 @@ import Card from "../components/Card";
 function Result() {
   return (
     <Card>
-      Result <Link to="/">Add</Link>
+      Result <Link to="/add">Add</Link>
     </Card>
   );
 }
