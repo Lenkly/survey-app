@@ -1,13 +1,10 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Card from "../components/Card";
-import styled from "@emotion/styled";
+//import styled from "@emotion/styled";
 import Button from "../components/Button";
 import Form from "../components/Form";
-
-const Label = styled.label`
-  display: block;
-`;
+import RadioInput from "../components/RadioInput";
 
 const POLLS_API_URL =
   process.env.REACT_APP_POLLS_API ||
@@ -44,12 +41,23 @@ function Vote() {
     });
     history.push(`/polls/${poll.id}`);
   }
-
+  const options = ["answerOne", "answerTwo", "answerThree"];
   return (
-    <Card>
+    <>
       <Form onSubmit={handleSubmit}>
-        <h2>{poll?.question}</h2>
-        <Label>
+        <Card>
+          <h2>{poll?.question}</h2>
+          {options.map(option => (
+            <RadioInput
+              key={option}
+              checked={answer === option}
+              onChange={event => setAnswer(event.target.value)}
+              value={option}
+              label={poll?.[option]}
+              name="answer"
+            />
+          ))}
+          {/* <Label>
           <input
             type="radio"
             name="answer"
@@ -78,10 +86,11 @@ function Vote() {
             onChange={event => setAnswer(event.target.value)}
           />
           {poll?.answerThree}
-        </Label>
+        </Label> */}
+        </Card>
         <Button>Vote</Button>
       </Form>
-    </Card>
+    </>
   );
 }
 
