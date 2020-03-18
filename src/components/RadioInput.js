@@ -15,12 +15,12 @@ const Input = styled.input`
 `;
 
 const Checkmark = styled.div`
-  border-radius: 50%;
-  border: 1px solid #111;
-  background: ${props => (props.checked ? "#1dcb6d" : "#fff")};
-  height: 18px;
-  width: 18px;
-  margin-right: 8px;
+  border-radius: 100%;
+  border: 4px solid #fff;
+  background: ${props => (props.checked ? "rgba(235, 104, 164, 1)" : "#fff")};
+  height: 15px;
+  width: 15px;
+  margin-right: 15px;
 `;
 
 const RadioInput = ({ checked, label, ...inputProps }) => {
