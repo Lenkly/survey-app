@@ -1,7 +1,13 @@
-import React from "react";
-import "./Button.css";
+import styled from "@emotion/styled";
 
-function Button(props) {
-  return <button className="button" {...props} />;
-}
+const Button = styled.button`
+  background: ${props => props.theme.colors.backgroundButton};
+  height: 70px;
+  width: 250px;
+  border-radius: 12px;
+  color: ${props => props.theme.colors.textPrimary};
+  font-size: 1.5rem;
+  text-transform: uppercase;
+`;
+
 export default Button;

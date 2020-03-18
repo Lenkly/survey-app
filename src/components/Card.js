@@ -1,8 +1,12 @@
-import React from "react";
-import "./Card.css";
+import styled from "@emotion/styled";
 
-function Card(props) {
-  return <div className="card">{props.children}</div>;
-}
+const Card = styled.div`
+  background: ${props => props.theme.colors.backgroundCard};
+  border-radius: 12px;
+  padding: 20px;
+  width: 85%;
+  max-width: 600px;
+  margin-bottom: 20px;
+`;
 
 export default Card;
