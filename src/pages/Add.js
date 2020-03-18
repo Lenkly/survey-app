@@ -2,20 +2,56 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import Button from "../components/Button";
-import "./Add.css";
+import styled from "@emotion/styled";
+import Form from "../components/Form";
+
+const Input = styled.input`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 10px;
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+`;
+
+const QuestionInput = styled(Input)`
+  width: 100%;
+  font-weight: 500;
+  background: none;
+  border: none;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 40px;
+  padding-bottom: 5px;
+`;
+
+const AnswerInput = styled(Input)`
+  width: 100%;
+  margin-bottom: 30px;
+  background: none;
+  border: none;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  color: white;
+  padding-bottom: 5px;
+`;
 
 function Add() {
   const [question, setQuestion] = React.useState("");
   const [answerOne, setAnswerOne] = React.useState("");
   const [answerTwo, setAnswerTwo] = React.useState("");
   const [answerThree, setAnswerThree] = React.useState("");
+
   async function handleSubmit(event) {
     event.preventDefault();
     const poll = {
       question: question,
       answerOne: answerOne,
       answerTwo: answerTwo,
-      answerThree: answerThree
+      answerThree: answerThree,
+      votes: []
     };
     const response = await fetch(
       process.env.REACT_APP_POLLS_API ||
@@ -33,10 +69,9 @@ function Add() {
   }
   return (
     <>
-      <form className="add-form" onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Card>
-          <input
-            className="add-form__input-question"
+          <QuestionInput
             type="text"
             placeholder="Enter your question..."
             value={question}
@@ -44,8 +79,7 @@ function Add() {
               setQuestion(event.target.value);
             }}
           />
-          <input
-            className="add-form__input"
+          <AnswerInput
             type="text"
             placeholder="First answer"
             value={answerOne}
@@ -53,8 +87,7 @@ function Add() {
               setAnswerOne(event.target.value);
             }}
           />
-          <input
-            className="add-form__input"
+          <AnswerInput
             type="text"
             placeholder="Second answer"
             value={answerTwo}
@@ -62,8 +95,7 @@ function Add() {
               setAnswerTwo(event.target.value);
             }}
           />
-          <input
-            className="add-form__input"
+          <AnswerInput
             type="text"
             placeholder="Third answer"
             value={answerThree}
@@ -75,7 +107,7 @@ function Add() {
         </Card>
 
         <Button>Create Poll</Button>
-      </form>
+      </Form>
     </>
   );
 }
