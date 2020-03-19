@@ -46,9 +46,11 @@ function Add() {
   const [answerOne, setAnswerOne] = React.useState("");
   const [answerTwo, setAnswerTwo] = React.useState("");
   const [answerThree, setAnswerThree] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     const poll = {
       question: question,
       answerOne: answerOne,
@@ -112,7 +114,7 @@ function Add() {
           {/* Add <Link to="/vote">Vote!!</Link> */}
         </Card>
 
-        <Button>Create Poll</Button>
+        <Button disabled={isLoading}>Create Poll</Button>
       </Form>
     </>
   );

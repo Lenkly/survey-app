@@ -5,33 +5,42 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import Form from "../components/Form";
 import RadioInput from "../components/RadioInput";
-import { patchPoll } from "../api/polls";
-
-const POLLS_API_URL =
-  process.env.REACT_APP_POLLS_API ||
-  "https://my-json-server.typicode.com/Lenkly/survey-app/polls";
+import { patchPoll, getPoll } from "../api/polls";
 
 function Vote() {
   const { pollId } = useParams();
   const history = useHistory();
   const [poll, setPoll] = React.useState(null);
   const [answer, setAnswer] = React.useState(null);
+  const [isLoadingPatchPoll, setIsLoadingPatchPoll] = React.useState(false);
+  const [isLoadingGetPoll, setIsLoadingGetPoll] = React.useState(false);
 
   React.useEffect(() => {
-    async function getPoll() {
-      const response = await fetch(`${POLLS_API_URL}/${pollId}`);
-      const poll = await response.json();
+    async function doGetPoll() {
+      setIsLoadingGetPoll(true);
+      //const response = await fetch(`${POLLS_API_URL}/${pollId}`);
+      const poll = await getPoll(pollId);
       setPoll(poll);
+      setIsLoadingGetPoll(false);
     }
 
-    getPoll();
+    doGetPoll();
   }, [pollId]);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
+    setIsLoadingPatchPoll(true);
+
     const newPoll = { ...poll };
     newPoll.votes.push(answer);
+
+    await patchPoll(pollId, newPoll);
+    history.push(`/polls/${poll.id}`);
+
+    if (isLoadingGetPoll) {
+      return <div>Loading...</div>;
+    }
 
     // await fetch(`${POLLS_API_URL}/${pollId}`, {
     //   method: "PATCH",
@@ -90,7 +99,7 @@ function Vote() {
           {poll?.answerThree}
         </Label> */}
         </Card>
-        <Button>Vote</Button>
+        <Button disabled={isLoadingPatchPoll}>Vote</Button>
       </Form>
     </>
   );

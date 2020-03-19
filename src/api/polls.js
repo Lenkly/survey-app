@@ -1,7 +1,7 @@
 const POLLS_API_URL =
   process.env.REACT_APP_POLLS_API ||
   "https://my-json-server.typicode.com/Lenkly/survey-app/polls";
-
+console.log(POLLS_API_URL);
 export async function getPoll(pollId) {
   const response = await fetch(`${POLLS_API_URL}/§{pollId}`);
   const poll = await response.json();
