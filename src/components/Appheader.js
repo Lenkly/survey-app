@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css";
-import Logo from "./surveylogo.png";
+import { useTheme } from "emotion-theming";
+
 import styled from "@emotion/styled";
 
 const Header = styled.header`
@@ -9,9 +10,10 @@ const Header = styled.header`
 `;
 
 function Appheader() {
+  const theme = useTheme();
   return (
     <Header>
-      <img className="logo" src={Logo} alt="Survey"></img>
+      <img className="logo" src={theme.images.header} alt="Survey"></img>
     </Header>
   );
 }
