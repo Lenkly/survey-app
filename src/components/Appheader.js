@@ -9,10 +9,21 @@ const Header = styled.header`
   justify-content: flex-end;
 `;
 
-function Appheader() {
+const SwitchColorButton = styled.button`
+  border: none;
+  background: none;
+  font-size: 20px;
+`;
+
+function Appheader({ onSwitchColorButtonClick }) {
   const theme = useTheme();
   return (
     <Header>
+      <SwitchColorButton onClick={onSwitchColorButtonClick}>
+        <span role="img" aria-label="Switch theme">
+          🌗
+        </span>
+      </SwitchColorButton>
       <img className="logo" src={theme.images.header} alt="Survey"></img>
     </Header>
   );
