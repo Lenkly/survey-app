@@ -17,7 +17,10 @@ const Input = styled.input`
 const Checkmark = styled.div`
   border-radius: 100%;
   border: 4px solid #fff;
-  background: ${props => (props.checked ? "rgba(235, 104, 164, 1)" : "#fff")};
+  background: ${props =>
+    props.checked
+      ? props.theme.colors.radioButton
+      : props.theme.colors.radioButtonNone};
   height: 15px;
   width: 15px;
   margin-right: 15px;
