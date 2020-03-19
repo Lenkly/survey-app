@@ -20,6 +20,22 @@
       "answerOne": "LOL",
       "answerTwo": "Why is this your question 🙄",
       "answerThree": "No"
+    },
+    {
+      "question": "Hallo",
+      "answerOne": "hi",
+      "answerTwo": "ciao",
+      "answerThree": "danke",
+      "votes": [],
+      "id": 4
+    },
+    {
+      "question": "Tradition",
+      "answerOne": "no",
+      "answerTwo": "yes",
+      "answerThree": "why not",
+      "votes": [],
+      "id": 5
     }
   ]
 }
