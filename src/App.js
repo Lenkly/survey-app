@@ -7,7 +7,7 @@ import Result from "./pages/Result";
 import styled from "@emotion/styled";
 import GlobalStyles from "./components/GlobalStyles";
 import { ThemeProvider } from "emotion-theming";
-//import daylight from "./themes/daylight";
+import daylight from "./themes/daylight";
 import nightshine from "./themes/nightshine";
 
 const Main = styled.main`
@@ -20,11 +20,16 @@ const Main = styled.main`
 `;
 
 function App() {
+  const [theme, setTheme] = React.useState(daylight);
   return (
-    <ThemeProvider theme={nightshine}>
+    <ThemeProvider theme={theme}>
       <Router>
         <GlobalStyles />
-        <Appheader />
+        <Appheader
+          onSwitchColorButtonClick={() => {
+            setTheme(theme === daylight ? nightshine : daylight);
+          }}
+        />
         <Main>
           <Switch>
             <Route exact path="/">

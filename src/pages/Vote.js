@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import Form from "../components/Form";
 import RadioInput from "../components/RadioInput";
+import { patchPoll } from "../api/polls";
 
 const POLLS_API_URL =
   process.env.REACT_APP_POLLS_API ||
@@ -32,14 +33,15 @@ function Vote() {
     const newPoll = { ...poll };
     newPoll.votes.push(answer);
 
-    await fetch(`${POLLS_API_URL}/${pollId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newPoll)
-    });
-    history.push(`/polls/${poll.id}`);
+    // await fetch(`${POLLS_API_URL}/${pollId}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(newPoll)
+    // });
+    const patchedPoll = await patchPoll(poll);
+    history.push(`/polls/${patchedPoll.id}`);
   }
   const options = ["answerOne", "answerTwo", "answerThree"];
   return (
